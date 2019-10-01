@@ -1,0 +1,80 @@
+{
+  "name": "stampede-portal",
+  "version": "0.1.0",
+  "description": "The UI for the stampede system",
+  "main": "bin/stampede-portal.js",
+  "scripts": {
+    "start": "bin/stampede-portal.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sonar": "node sonar-project.js",
+    "lint": "eslint $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")",
+    "lint-fix": "eslint --fix $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")"
+  },
+  "engines": {
+    "node": "8.11.4"
+  },
+  "author": "David House",
+  "license": "MIT",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.1.0",
+    "activedirectory": "^0.7.2",
+    "async-redis": "^1.1.7",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.5",
+    "express-ws": "^4.0.0",
+    "figlet": "^1.2.1",
+    "js-yaml": "^3.13.1",
+    "json-ptr": "^1.1.2",
+    "jsonpath": "^1.0.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "pkginfo": "^0.4.1",
+    "pretty-ms": "^5.0.0",
+    "pug": "^2.0.3",
+    "rc": "^1.2.8",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.3",
+    "ws": "^6.0.0",
+    "stampede-cache": "^0.3.1",
+    "bull": "^3.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-google": "^0.13.0",
+    "sonarqube-scanner": "^2.5.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "google"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "ecmaFeatures": {
+        "impliedStrict": true
+      },
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": 0,
+      "max-len": [
+        "error",
+        {
+          "code": 120
+        }
+      ],
+      "semi": [
+        "error",
+        "never"
+      ]
+    }
+  }
+}
