@@ -5,6 +5,7 @@ const figlet = require('figlet')
 
 const web = require('../lib/web')
 const notifications = require('../lib/notifications')
+const db = require('../lib/db')
 
 require('pkginfo')(module)
 const cache = require('stampede-cache')
@@ -15,6 +16,12 @@ const conf = require('rc')('mario', {
   redisPort: 6379,
   redisPassword: null,
   webPort: 7744,
+  // postgres
+  dbHost: 'localhost',
+  dbDatabase: 'stampede',
+  dbUser: 'postgres',
+  dbPassword: null,
+  dbPort: 54320,
   notificationQueue: 'stampede-portal',
 })
 
@@ -26,6 +33,7 @@ console.log(chalk.red('Redis Port: ' + conf.redisPort))
 console.log(chalk.red('Web Port: ' + conf.webPort))
 
 // Initialize our cache
+db.start(conf)
 cache.startCache(conf)
-notifications.start(conf)
-web.startRESTApi(conf, cache)
+notifications.start(conf, db)
+web.startRESTApi(conf, cache, db)
