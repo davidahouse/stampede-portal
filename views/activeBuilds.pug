@@ -15,11 +15,11 @@ block content
       each build, i in builds
         tr
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.owner
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.owner
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.repository
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.repository
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.buildKey
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.buildkey
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.build
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.build
           td= build.status

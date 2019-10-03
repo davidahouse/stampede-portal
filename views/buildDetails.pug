@@ -9,3 +9,40 @@ block content
           =`Home`
       li(class="breadcrumb-item active")
         =`Build Details`
+
+  hr
+  h5= `Build Information`
+
+  table(class="table table-striped")
+    tbody
+    tr
+        td= `Owner`
+        td= build.owner
+    tr
+        td= `Repository`
+        td= build.repository
+    tr
+        td= `Build Key`
+        td= build.buildkey
+    tr
+        td= `Build`
+        td= build.build
+    tr
+        td= `Status`
+        td= build.status
+
+  hr
+  h5= `Tasks`
+
+  table(class="table table-striped")
+    thead
+      tr
+        th= `Task ID`
+        th= `Task Title`
+        th= `Status`
+    tbody
+      each task, i in tasks
+        tr
+          td= task.taskid
+          td= task.title
+          td= task.status
