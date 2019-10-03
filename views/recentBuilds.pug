@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  nav(class="w-100")
+    ol(class="breadcrumb align-items-center")
+      li(class="breadcrumb-item")
+        a(href="/")
+          =`Home`
+      li(class="breadcrumb-item active")
+        =`Recent Builds`
+
+  table(class="table table-striped table-sm")
+    tbody
+      each build, i in builds
+        tr
+          td
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.owner
+          td
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.repository
+          td
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.buildKey
+          td
+            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + buildKey + `&build=` + build.build)= build.build
+          td= build.status
