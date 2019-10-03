@@ -1,10 +1,10 @@
 /**
  * handle index
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  * @param {*} cache
  * @param {*} db
- * @param {*} path 
+ * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
   const repositories = await db.fetchRepositories()

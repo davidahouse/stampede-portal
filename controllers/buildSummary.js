@@ -1,14 +1,14 @@
 /**
  * handle buildSummary
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  * @param {*} cache
  * @param {*} db
- * @param {*} path 
+ * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  let success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4]
-  let failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3]
+  const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4]
+  const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3]
 
   // TODO: We need to query here for the builds
 
@@ -28,9 +28,9 @@ async function handle(req, res, cache, db, path) {
   const data = {
     labels: ['11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', '0'],
     datasets: [
-      { label: 'Sucess', data: success, backgroundColor: 'rgba(0, 255, 0, 0.6)' },
-      { label: 'Failed', data: failure, backgroundColor: 'rgba(255, 0, 0, 0.6)' },
-    ]
+      {label: 'Sucess', data: success, backgroundColor: 'rgba(0, 255, 0, 0.6)'},
+      {label: 'Failed', data: failure, backgroundColor: 'rgba(255, 0, 0, 0.6)'},
+    ],
   }
   res.render(path + 'buildSummary', {data: data})
 }
