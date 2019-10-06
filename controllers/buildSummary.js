@@ -7,23 +7,24 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 4]
-  const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3]
+  const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-  // TODO: We need to query here for the builds
-
-  // for (let index = 0; index < recentBuilds.length; index++) {
-  //   const buildInfo = await redisClient.fetch('luigi-jenkins-build-' + recentBuilds[index])
-  //   if (buildInfo != null && buildInfo.buildStatus != null && buildInfo.buildStatus.status != null) {
-  //     const ageInMs = Date.now() - buildInfo.buildStatus.endTimeMillis
-  //     const ageInHours = Math.round(ageInMs / 1000 / 60 / 60)
-  //     if (buildInfo.buildStatus.status === 'SUCCESS') {
-  //       success[success.length - 1 - ageInHours] = success[success.length - 1 - ageInHours] + 1
-  //     } else {
-  //       failure[failure.length - 1 - ageInHours] = failure[failure.length - 1 - ageInHours] + 1
-  //     }
-  //   }
-  // }
+  const builds = await db.recentBuilds()
+  const recentBuilds = builds.rows
+  for (let index = 0; index < recentBuilds.length; index++) {
+    console.dir(recentBuilds[index])
+    console.log(recentBuilds[index].completedat)
+    const ageInMs = Date.now() - recentBuilds[index].completedat
+    console.log(ageInMs)
+    const ageInHours = Math.round(ageInMs / 1000 / 60 / 60)
+    console.log(ageInHours)
+    if (recentBuilds[index].status === 'completed') {
+      success[success.length - 1 - ageInHours] = success[success.length - 1 - ageInHours] + 1
+    } else {
+      failure[failure.length - 1 - ageInHours] = failure[failure.length - 1 - ageInHours] + 1
+    }
+  }
 
   const data = {
     labels: ['11', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', '0'],

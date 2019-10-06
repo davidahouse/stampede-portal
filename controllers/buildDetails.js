@@ -7,14 +7,12 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  console.dir(req.query)
-  const build = await db.fetchBuild(req.query.owner, req.query.repository, req.query.buildKey, req.query.build)
-  const buildTasks = await db.fetchBuildTasks(req.query.owner, req.query.repository,
-    req.query.buildKey, req.query.build)
+  const build = await db.fetchBuild(req.query.buildID)
+  const buildTasks = await db.fetchBuildTasks(req.query.buildID)
   const buildDetails = build.rows.length > 0 ? build.rows[0] : {}
   const tasks = []
   for (let index = 0; index < buildTasks.rows.length; index++) {
-    const taskDetails = await cache.fetchTaskConfig(buildTasks.rows[index].taskid)
+    const taskDetails = await cache.fetchTaskConfig(buildTasks.rows[index].task)
     const task = buildTasks.rows[index]
     task.title = taskDetails.title
     tasks.push(task)

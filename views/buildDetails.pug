@@ -40,9 +40,11 @@ block content
         th= `Task ID`
         th= `Task Title`
         th= `Status`
+        th= `Duration`
     tbody
       each task, i in tasks
         tr
-          td= task.taskid
+          td= task.task
           td= task.title
           td= task.status
+          td= task.duration
