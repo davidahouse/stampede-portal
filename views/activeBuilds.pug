@@ -15,11 +15,11 @@ block content
       each build, i in builds
         tr
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.owner
+            a(href=`/buildDetails?buildID=` + build.buildid)= build.owner
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.repository
+            a(href=`/buildDetails?buildID=` + build.buildid)= build.repository
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.buildkey
+            a(href=`/buildDetails?buildID=` + build.buildid)= build.buildkey
           td
-            a(href=`/buildDetails?owner=` + build.owner + `&repository=` + build.repository + `&buildKey=` + build.buildkey + `&build=` + build.build)= build.build
+            a(href=`/buildDetails?buildID=` + build.buildid)= build.build
           td= build.status
