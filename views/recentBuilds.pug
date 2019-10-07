@@ -15,11 +15,11 @@ block content
       each build, i in builds
         tr
           td
-            a(href=`/buildDetails?buildID=` + build.buildid)= build.owner
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.owner
           td
-            a(href=`/buildDetails?buildID=` + build.buildid)= build.repository
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.repository
           td
-            a(href=`/buildDetails?buildID=` + build.buildid)= build.buildkey
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build_key
           td
-            a(href=`/buildDetails?buildID=` + build.buildid)= build.build
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build
           td= build.status
