@@ -14,8 +14,8 @@ async function handle(req, res, cache, db, path) {
   const recentBuilds = builds.rows
   for (let index = 0; index < recentBuilds.length; index++) {
     console.dir(recentBuilds[index])
-    console.log(recentBuilds[index].completedat)
-    const ageInMs = Date.now() - recentBuilds[index].completedat
+    console.log(recentBuilds[index].completed_at)
+    const ageInMs = Date.now() - recentBuilds[index].completed_at
     console.log(ageInMs)
     const ageInHours = Math.round(ageInMs / 1000 / 60 / 60)
     console.log(ageInHours)
