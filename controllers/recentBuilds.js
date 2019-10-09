@@ -7,7 +7,7 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const builds = await db.recentBuilds()
+  const builds = await db.recentBuilds(8)
   res.render(path + 'recentBuilds', {builds: builds.rows})
 }
 
