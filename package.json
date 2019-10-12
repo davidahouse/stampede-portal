@@ -6,9 +6,11 @@
   "scripts": {
     "start": "bin/stampede-portal.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sonar": "node sonar-project.js",
     "lint": "eslint $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")",
     "lint-fix": "eslint --fix $(find . -name \"*.js\" -not -path \"./node_modules/*\" -not -path \"./public/*\")"
+  },
+  "bin": {
+    "stampede-portal": "bin/stampede-portal.js"
   },
   "engines": {
     "node": "8.11.4"
