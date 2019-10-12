@@ -21,6 +21,7 @@ The configuration parameters are:
 | redisHost | localhost | The host name for redis |
 | redisPort | 6379 | The port for redis |
 | redisPassword | null | The password for redis if needed |
+| webPort | 7744 | The web port used for the http server |
 
 ### License
 
