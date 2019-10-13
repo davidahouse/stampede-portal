@@ -15,7 +15,7 @@ async function handle(req, res, serverConf, cache, db) {
   if (req.query.owner != null) {
     prefix = req.query.owner + '-' + prefix
   }
-  const filteredBuilds = activeBuilds.filter(build => build.startsWith(prefix))
+  const filteredBuilds = activeBuilds.filter((build) => build.startsWith(prefix))
   const builds = []
   for (let index = 0; index < filteredBuilds.length; index++) {
     const buildID = filteredBuilds[index]
