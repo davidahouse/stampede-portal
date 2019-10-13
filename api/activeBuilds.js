@@ -11,9 +11,9 @@
 async function handle(req, res, serverConf, cache, db) {
   const activeBuilds = await cache.fetchActiveBuilds()
   let prefix = req.query.repository != null ?
-    '-' + req.query.repository : ''
+    req.query.repository + '-' : ''
   if (req.query.owner != null) {
-    prefix = req.query.owner + prefix
+    prefix = req.query.owner + '-' + prefix
   }
   const filteredBuilds = activeBuilds.filter(build => build.startsWith(prefix))
   const builds = []
