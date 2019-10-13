@@ -9,7 +9,7 @@
  * @param {*} db
  */
 async function handle(req, res, serverConf, cache, db) {
-  const recentBuilds = await db.recentBuilds(8)
+  const recentBuilds = await db.recentBuilds(8, req.query.owner, req.query.repository)
   const builds = []
   if (recentBuilds != null) {
     for (let index = 0; index < recentBuilds.rows.length; index++) {
