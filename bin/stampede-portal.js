@@ -22,6 +22,7 @@ const conf = require('rc')('mario', {
   dbUser: 'postgres',
   dbPassword: null,
   dbPort: 54320,
+  dbCert: null,
   notificationQueue: 'stampede-portal',
 })
 
