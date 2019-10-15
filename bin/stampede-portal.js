@@ -10,7 +10,7 @@ const db = require('../lib/db')
 require('pkginfo')(module)
 const cache = require('stampede-cache')
 
-const conf = require('rc')('mario', {
+const conf = require('rc')('stampede', {
   // defaults
   redisHost: 'localhost',
   redisPort: 6379,
