@@ -1,5 +1,5 @@
 /**
- * handle activeBuilds
+ * handle index
  * @param {*} req
  * @param {*} res
  * @param {*} cache
@@ -7,8 +7,7 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const builds = await db.activeBuilds()
-  res.render(path + 'activeBuilds', {builds: builds.rows})
+  res.render(path + 'monitor/monitor', {});
 }
 
-module.exports.handle = handle
+module.exports.handle = handle;
