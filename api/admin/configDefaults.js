@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * handle
@@ -10,7 +10,7 @@
  */
 async function handle(req, res, serverConf, cache, db) {
   const defaults = await cache.fetchSystemDefaults();
-  res.send(defaults.defaults);
+  res.send(defaults != null ? defaults : { defaults: {} });
 }
 
 module.exports.handle = handle;
