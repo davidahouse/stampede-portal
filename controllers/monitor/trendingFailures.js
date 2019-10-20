@@ -7,8 +7,8 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const failures = await db.fetchFailedTasks()
-  res.render(path + 'trendingFailures', {failures: failures.rows})
+  const failures = await db.fetchFailedTasks();
+  res.render(path + "monitor/trendingFailures", { failures: failures.rows });
 }
 
-module.exports.handle = handle
+module.exports.handle = handle;
