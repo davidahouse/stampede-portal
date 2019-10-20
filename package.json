@@ -47,38 +47,7 @@
   "devDependencies": {
     "eslint": "^6.2.2",
     "eslint-config-google": "^0.13.0",
+    "eslint-config-prettier": "^6.4.0",
     "sonarqube-scanner": "^2.5.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "node": true,
-      "es6": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "google"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2017,
-      "ecmaFeatures": {
-        "impliedStrict": true
-      },
-      "sourceType": "module"
-    },
-    "rules": {
-      "no-console": 0,
-      "no-multi-str": 0,
-      "new-cap": 0,
-      "max-len": [
-        "error",
-        {
-          "code": 120
-        }
-      ],
-      "semi": [
-        "error",
-        "never"
-      ]
-    }
   }
 }
