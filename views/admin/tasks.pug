@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+  table(class="table table-striped table-sm")
+    tbody
+      each task, i in tasks
+        tr
+          td= task.id
+          td= task.title

@@ -37,4 +37,14 @@ html
 
         main(class="col-md-9 ml-sm-auto col-lg-10 px-4" role="main")
           br
+
+          ul(class="nav nav-pills")
+            li(class="nav-item")
+              a(class="nav-link" href="/monitor/activeBuilds") Active Builds
+            li(class="nav-item")
+              a(class="nav-link" href="/monitor/buildSummary") Build Summary
+            li(class="nav-item")
+              a(class="nav-link" href="/monitor/trendingFailures") Trending Failures
+          hr
+
           block content
