@@ -23,13 +23,25 @@ block content
         td= build.repository
     tr
         td= `Build Key`
-        td= build.buildkey
+        td= build.build_key
     tr
         td= `Build`
         td= build.build
     tr
         td= `Status`
         td= build.status
+
+    tr
+        td= `Started At`
+        td= build.started_at
+
+    tr
+        td= `Completed At`
+        td= build.completed_at
+
+    tr
+      td= `Duration`
+      td= duration
 
   hr
   h5= `Tasks`

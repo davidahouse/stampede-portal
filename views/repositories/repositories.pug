@@ -2,15 +2,15 @@ extends layout
 
 block content
 
-  nav(class="w-100")
-    ol(class="breadcrumb align-items-center")
-      li(class="breadcrumb-item active")
-        a(href="/repositories")
-          =`Repositories`
-
   table(class="table table-striped table-sm")
+    thead
+      tr 
+        th Owner
+        th Repository
     tbody
       each repo, i in repositories
         tr
-          td= repo.owner
-          td= repo.repository
+          td
+            a(href=`/repositories/repositoryDetails?owner=` + repo.owner + `&repository=` + repo.repository)= repo.owner
+          td
+            a(href=`/repositories/repositoryDetails?owner=` + repo.owner + `&repository=` + repo.repository)= repo.repository

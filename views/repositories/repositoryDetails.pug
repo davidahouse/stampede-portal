@@ -1,0 +1,48 @@
+extends layout
+
+block content
+
+  nav(class="w-100")
+    ol(class="breadcrumb align-items-center")
+      li(class="breadcrumb-item active")
+        a(href="/repositories")
+          =`Repositories`
+
+  h2= owner
+  h2= repository
+
+  hr
+
+  h3= `Next Build Number: ` + nextBuildNumber
+
+  hr
+
+  h3 Active Builds:
+
+  table(class="table table-striped table-sm")
+    tbody
+      each build, i in activeBuilds
+        tr
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build_key
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build
+          td= build.status
+
+  hr
+
+  h3 Recent Builds:
+
+  table(class="table table-striped table-sm")
+    tbody
+      each build, i in recentBuilds
+        tr
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.owner
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.repository
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build_key
+          td
+            a(href=`/buildDetails?buildID=` + build.build_id)= build.build
+          td= build.status
