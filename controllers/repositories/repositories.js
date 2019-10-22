@@ -8,8 +8,8 @@
  */
 async function handle(req, res, cache, db, path) {
   const repositories = await db.fetchRepositories();
-  console.dir(repositories);
-  res.render(path + 'repositories/repositories', {
+  console.dir(repositories.rows);
+  res.render(path + "repositories/repositories", {
     repositories: repositories.rows
   });
 }
