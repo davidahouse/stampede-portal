@@ -7,7 +7,8 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  res.render(path + "history/tasks", {});
+  const tasks = await db.recentTasks(8);
+  res.render(path + "history/tasks", { tasks: tasks.rows });
 }
 
 module.exports.handle = handle;
