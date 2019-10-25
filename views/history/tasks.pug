@@ -1,3 +1,18 @@
 extends layout
 
 block content
+
+  table(class="table table-striped table-sm")
+    tbody
+      each task, i in tasks
+        tr
+          td
+            a(href=`/taskDetails?taskID=` + task.task_id)= task.owner
+          td
+            a(href=`/taskDetails?taskID=` + task.task_id)= task.repository
+          td
+            a(href=`/taskDetails?taskID=` + task.task_id)= task.task
+          td
+            a(href=`/taskDetails?taskID=` + task.task_id)= task.conclusion
+          td
+            a(href=`/taskDetails?taskID=` + task.task_id)= task.node
