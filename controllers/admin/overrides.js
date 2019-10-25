@@ -7,7 +7,15 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  res.render(path + "admin/overrides", {});
+  const overrides = await cache.fetchSystemOverrides();
+  const configOverrides = [];
+  Object.keys(overrides.overrides).forEach(function(key) {
+    configOverrides.push({
+      key: key,
+      value: overrides.overrides[key]
+    });
+  });
+  res.render(path + "admin/overrides", { overrides: configOverrides });
 }
 
 module.exports.handle = handle;
