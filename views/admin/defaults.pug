@@ -1,3 +1,10 @@
 extends layout
 
 block content
+
+  table(class="table table-striped table-sm")
+    tbody
+      each def, i in defaults
+        tr
+          td= def.key
+          td= def.value
