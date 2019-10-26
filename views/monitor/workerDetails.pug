@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+  nav(class="w-100")
+    ol(class="breadcrumb align-items-center")
+      li(class="breadcrumb-item active")
+        a(href="/monitor/workers")
+          =`Workers`
+  
+  table(class="table table-striped table-sm")
+    tbody
+      tr
+        td Timestamp
+        td= worker.timestamp
+      tr
+        td Node
+        td= worker.node
+      tr
+        td Worker Name
+        td= worker.workerName
+      tr
+        td Version
+        td= worker.version
+      tr
+        td Status
+        td= worker.status
+      tr
+        td Task Queue
+        td= worker.taskQueue

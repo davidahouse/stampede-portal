@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+ table(class="table table-striped table-sm")
+    tbody
+      each worker, i in workers
+        tr
+          td
+            a(href=`/monitor/workerDetails?workerID=` + worker.workerID)= worker.node
+          td
+            a(href=`/monitor/workerDetails?workerID=` + worker.workerID)= worker.workerName
+          td
+            a(href=`/monitor/workerDetails?workerID=` + worker.workerID)= worker.status
+          td
+            a(href=`/monitor/workerDetails?workerID=` + worker.workerID)= worker.taskQueue
