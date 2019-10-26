@@ -25,7 +25,7 @@ async function handle(req, res, cache, db, path) {
     tasks.push(task);
   }
   console.dir(tasks);
-  res.render(path + "buildDetails", {
+  res.render(path + "history/buildDetails", {
     build: buildDetails,
     duration: duration,
     tasks: tasks
