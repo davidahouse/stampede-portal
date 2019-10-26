@@ -7,12 +7,12 @@ block content
       each task, i in tasks
         tr
           td
-            a(href=`/taskDetails?taskID=` + task.task_id)= task.owner
+            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.owner
           td
-            a(href=`/taskDetails?taskID=` + task.task_id)= task.repository
+            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.repository
           td
-            a(href=`/taskDetails?taskID=` + task.task_id)= task.task
+            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.task
           td
-            a(href=`/taskDetails?taskID=` + task.task_id)= task.conclusion
+            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.conclusion
           td
-            a(href=`/taskDetails?taskID=` + task.task_id)= task.node
+            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.node

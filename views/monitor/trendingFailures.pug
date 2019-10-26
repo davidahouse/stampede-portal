@@ -6,9 +6,9 @@ block content
     thead
       tr
         th= `Task ID`
-        th= `Task Title`
+        th= `Count`
     tbody
       each task, i in failures
         tr
           td= task.task
-          td= task.title
+          td= task.count
