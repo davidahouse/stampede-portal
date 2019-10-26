@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+  hr
+  h5= `Task Information`
+
+  table(class="table table-striped")
+    tbody
+    tr
+        td= `Owner`
+        td= build.owner
+    tr
+        td= `Repository`
+        td= build.repository
+    tr
+        td= `Build Key`
+        td= build.build_key
+    tr
+        td= `Build`
+        td= build.build
+
+    tr
+        td= `Task`
+        td= task.task
+    tr
+        td= `Conclusion`
+        td= task.conclusion
+    tr
+        td= `Node`
+        td= task.node

@@ -1,5 +1,5 @@
 /**
- * handle trendingFailures
+ * handle workers
  * @param {*} req
  * @param {*} res
  * @param {*} cache
@@ -7,8 +7,9 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const failures = await db.fetchRecentFailedTasks();
-  res.render(path + "monitor/trendingFailures", { failures: failures.rows });
+  const workers = await cache.fetchActiveWorkers();
+  console.dir(workers);
+  res.render(path + "monitor/workers", { workers: workers });
 }
 
 module.exports.handle = handle;
