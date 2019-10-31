@@ -1,3 +1,5 @@
+const prettyMilliseconds = require('pretty-ms');
+
 /**
  * handle buildDetails
  * @param {*} req
@@ -12,7 +14,7 @@ async function handle(req, res, cache, db, path) {
   const buildDetails = build.rows.length > 0 ? build.rows[0] : {};
   const duration = buildDetails.completed_at
     ? buildDetails.completed_at - buildDetails.started_at
-    : "";
+    : null;
   const tasks = [];
   for (let index = 0; index < buildTasks.rows.length; index++) {
     const taskDetails = await cache.fetchTaskConfig(
@@ -21,14 +23,15 @@ async function handle(req, res, cache, db, path) {
     const task = buildTasks.rows[index];
     task.title = taskDetails.title;
     task.duration =
-      task.finished_at != null ? task.finished_at - task.started_at : "";
+      task.finished_at != null ? task.finished_at - task.started_at : null;
     tasks.push(task);
   }
   console.dir(tasks);
-  res.render(path + "repositories/buildDetails", {
+  res.render(path + 'repositories/buildDetails', {
     build: buildDetails,
     duration: duration,
-    tasks: tasks
+    tasks: tasks,
+    prettyMilliseconds: ms => (ms != null ? prettyMilliseconds(ms) : '')
   });
 }
 

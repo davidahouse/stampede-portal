@@ -33,7 +33,7 @@ block content
 
     tr
       td= `Duration`
-      td= duration
+      td= prettyMilliseconds(duration)
 
   hr
   h5= `Tasks`
@@ -51,4 +51,4 @@ block content
           td= task.task
           td= task.title
           td= task.status
-          td= task.duration
+          td= prettyMilliseconds(task.duration)
