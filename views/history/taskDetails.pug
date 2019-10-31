@@ -29,3 +29,20 @@ block content
     tr
         td= `Node`
         td= task.node
+
+  if task.result
+    h5 Task Result:
+    table(class="table table-striped table-sm")
+      tbody
+        tr
+          td Conclusion
+          td= task.result.conclusion
+        tr
+          td Title
+          td= task.result.title
+        tr
+          td Summary
+          td= task.result.summary
+        tr
+          td Text
+          td= task.result.text
