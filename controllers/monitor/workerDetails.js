@@ -14,7 +14,8 @@ async function handle(req, res, cache, db, path) {
       worker = workers[index];
     }
   }
-  res.render(path + "monitor/workerDetails", { worker: worker });
+  console.dir(worker);
+  res.render(path + 'monitor/workerDetails', { worker: worker });
 }
 
 module.exports.handle = handle;
