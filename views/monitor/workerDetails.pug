@@ -28,3 +28,37 @@ block content
       tr
         td Task Queue
         td= worker.taskQueue
+
+  if worker.lastTask
+    h5 Task Info:
+    table(class="table table-striped table-sm")
+      tbody
+        tr
+          td Owner
+          td= worker.lastTask.owner
+        tr
+          td Repository
+          td= worker.lastTask.repository
+        tr
+          td Task ID
+          td= worker.lastTask.taskID
+        tr
+          td Status
+          td= worker.lastTask.status
+
+  if worker.lastTask.result
+    h5 Task Result:
+    table(class="table table-striped table-sm")
+      tbody
+        tr
+          td Conclusion
+          td= worker.lastTask.result.conclusion
+        tr
+          td Title
+          td= worker.lastTask.result.title
+        tr
+          td Summary
+          td= worker.lastTask.result.summary
+        tr
+          td Text
+          td= worker.lastTask.result.text
