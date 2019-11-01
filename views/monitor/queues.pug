@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+ table(class="table table-striped table-sm")
+    tbody
+      each queue, i in queues
+        tr
+          td= queue.queue
+          td= queue.stats.waiting.toString()
