@@ -48,7 +48,11 @@ block content
     tbody
       each task, i in tasks
         tr
-          td= task.task
-          td= task.title
-          td= task.status
-          td= prettyMilliseconds(task.duration)
+          td
+            a(href=`/monitor/taskDetails?taskID=` + task.task_id)= task.task
+          td
+            a(href=`/monitor/taskDetails?taskID=` + task.task_id)= task.title
+          td
+            a(href=`/monitor/taskDetails?taskID=` + task.task_id)= task.status
+          td
+            a(href=`/monitor/taskDetails?taskID=` + task.task_id)= prettyMilliseconds(task.duration)
