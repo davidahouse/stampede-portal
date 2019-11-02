@@ -56,3 +56,5 @@ block content
             a(href=`/monitor/taskDetails?taskID=` + task.task_id)= task.status
           td
             a(href=`/monitor/taskDetails?taskID=` + task.task_id)= prettyMilliseconds(task.duration)
+          td
+            a(href=`/monitor/requeueTask?taskID=` + task.task_id) Requeue
