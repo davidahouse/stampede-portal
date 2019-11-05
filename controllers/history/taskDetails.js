@@ -11,12 +11,19 @@ async function handle(req, res, cache, db, path) {
   const task = taskRows.rows[0];
   const detailsRows = await db.fetchTaskDetails(req.query.taskID);
   const taskDetails = detailsRows.rows[0];
+  const configValues = [];
+  Object.keys(
+    taskDetails.details.config != null ? taskDetails.details.config : {}
+  ).forEach(function(key) {
+    configValues.push({ key: key, value: taskDetails.details.config[key] });
+  });
   const buildRows = await db.fetchBuild(task.build_id);
   const build = buildRows.rows[0];
   res.render(path + 'history/taskDetails', {
     task: task,
     build: build,
-    taskDetails: taskDetails
+    taskDetails: taskDetails,
+    configValues: configValues
   });
 }
 

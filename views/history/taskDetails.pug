@@ -3,7 +3,7 @@ extends layout
 block content
 
   hr
-  h5= `Task Information`
+  h5 Task Information
 
   table(class="table table-striped")
     tbody
@@ -30,8 +30,17 @@ block content
         td= `Node`
         td= task.node
 
+  h5 Task Config
+
+  table(class="table table-striped")
+    tbody
+      each config, i in configValues
+        tr
+          td= config.key
+          td= config.value
+
   if taskDetails.details.result
-    h5 Task Result:
+    h5 Task Result
     table(class="table table-striped table-sm")
       tbody
         tr
