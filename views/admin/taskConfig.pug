@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  table(class="table table-striped table-sm")
+    tbody
+      tr
+        td Task
+        td= taskDetails.id
+      tr
+        td Title
+        td= taskDetails.title
+
+  h5 Config Parameters
+
+  table(class="table table-striped table-sm")
+    tbody
+      each param, i in config
+        tr
+          td= param.key
+
+  h5 Worker Parameters
+
+  table(class="table table-striped table-sm")
+    tbody
+      each config, i in workerConfig
+        tr
+          td= config.key
+          td= config.value  
