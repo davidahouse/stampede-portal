@@ -6,5 +6,7 @@ block content
     tbody
       each task, i in tasks
         tr
-          td= task.id
-          td= task.title
+          td
+            a(href=`/admin/taskConfig?taskID=` + task.id)= task.id
+          td
+            a(href=`/admin/taskConfig?taskID=` + task.id)= task.title
