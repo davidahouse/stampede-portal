@@ -1,12 +1,21 @@
 extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    tbody
-      each task, i in tasks
+  +titleBar([{title: 'Tasks'}])
+  div(class="flex flex-wrap m-4")
+
+    table(class="table-auto w-full")
+      thead
         tr
-          td
-            a(href=`/admin/taskConfig?taskID=` + task.id)= task.id
-          td
-            a(href=`/admin/taskConfig?taskID=` + task.id)= task.title
+          +tableHeader('Task ID')
+          +tableHeader('Title')
+      tbody
+        each task, i in tasks
+          +tableRow(`/admin/taskConfig?taskID=` + task.id)
+            +tableCell(task.id)
+            +tableCell(task.title)
