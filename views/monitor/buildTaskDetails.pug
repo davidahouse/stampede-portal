@@ -8,10 +8,9 @@ include ../components/tableCellButton
 
 block content
 
-    +titleBar([{title: 'Repositories', href: '/repositories/activeBuilds'}, 
-      {title: build.owner + ' ' + build.repository, href: '/repositories/repositoryDetails?owner=' + build.owner + '&repository=' + build.repository},
-      {title: build.owner + '' + build.repository + ' #' + build.build, href: '/repositories/buildDetails?buildID=' + build.build_id},
-      {title: task.task}])
+    +titleBar([{title: 'Active Builds', href: '/monitor/activeBuilds'}, 
+    {title: build.owner + '' + build.repository + ' #' + build.build, href: '/monitor/buildDetails?buildID=' + build.build_id},
+    {title: task.task}])
     div(class="flex flex-wrap m-4")
 
     +infoCard('Task Information')
@@ -26,6 +25,9 @@ block content
               +tableRow()
                 +tableCell('Node')
                 +tableCell(task.node)
+              +tableRow()
+                  +tableCellButton('Requeue', '/monitor/requeueTask?taskID=' + task.task_id)
+                  +tableCell('')
 
 
     +infoCard('Task Config')

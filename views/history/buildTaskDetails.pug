@@ -4,14 +4,12 @@ include ../components/tableHeader
 include ../components/tableCell
 include ../components/tableRow
 include ../components/infoCard
-include ../components/tableCellButton
 
 block content
 
-    +titleBar([{title: 'Repositories', href: '/repositories/activeBuilds'}, 
-      {title: build.owner + ' ' + build.repository, href: '/repositories/repositoryDetails?owner=' + build.owner + '&repository=' + build.repository},
-      {title: build.owner + '' + build.repository + ' #' + build.build, href: '/repositories/buildDetails?buildID=' + build.build_id},
-      {title: task.task}])
+    +titleBar([{title: 'Builds', href: '/history/builds'}, 
+    {title: build.owner + '' + build.repository + ' #' + build.build, href: '/history/buildDetails?buildID=' + build.build_id},
+    {title: task.task}])
     div(class="flex flex-wrap m-4")
 
     +infoCard('Task Information')
@@ -26,7 +24,6 @@ block content
               +tableRow()
                 +tableCell('Node')
                 +tableCell(task.node)
-
 
     +infoCard('Task Config')
         table(class="table-auto w-full")

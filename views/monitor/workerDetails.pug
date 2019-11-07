@@ -1,64 +1,67 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
+include ../components/infoCard
 
 block content
 
-  nav(class="w-100")
-    ol(class="breadcrumb align-items-center")
-      li(class="breadcrumb-item active")
-        a(href="/monitor/workers")
-          =`Workers`
-  
-  table(class="table table-striped table-sm")
-    tbody
-      tr
-        td Timestamp
-        td= worker.timestamp
-      tr
-        td Node
-        td= worker.node
-      tr
-        td Worker Name
-        td= worker.workerName
-      tr
-        td Version
-        td= worker.version
-      tr
-        td Status
-        td= worker.status
-      tr
-        td Task Queue
-        td= worker.taskQueue
+  +titleBar([{title: 'Workers', href: '/monitor/workers'}, {title: worker.workerName}])
+  div(class="flex flex-wrap m-4")
+
+  +infoCard('Worker Information')
+    table(class="table-auto w-full")
+      tbody
+        +tableRow()
+          +tableCell('Timestamp')
+          +tableCell(worker.timestamp)
+        +tableRow()
+          +tableCell('Node')
+          +tableCell(worker.node)
+        +tableRow()
+          +tableCell('Name')
+          +tableCell(worker.workerName)
+        +tableRow()
+          +tableCell('Version')
+          +tableCell(worker.version)
+        +tableRow()
+          +tableCell('Status')
+          +tableCell(worker.status)
+        +tableRow()
+          +tableCell('Task Queue')
+          +tableCell(worker.taskQueue)
 
   if worker.lastTask
-    h5 Task Info:
-    table(class="table table-striped table-sm")
-      tbody
-        tr
-          td Owner
-          td= worker.lastTask.owner
-        tr
-          td Repository
-          td= worker.lastTask.repository
-        tr
-          td Task ID
-          td= worker.lastTask.taskID
-        tr
-          td Status
-          td= worker.lastTask.status
+    +infoCard('Task Info')
+      table(class="table-auto w-full")
+        tbody
+          +tableRow()
+            +tableCell('Owner')
+            +tableCell(worker.lastTask.owner)
+          +tableRow()
+            +tableCell('Repository')
+            +tableCell(worker.lastTask.repository)
+          +tableRow()
+            +tableCell('Task ID')
+            +tableCell(worker.lastTask.taskID)
+          +tableRow()
+            +tableCell('Status')
+            +tableCell(worker.lastTask.status)
 
   if worker.lastTask.result
-    h5 Task Result:
-    table(class="table table-striped table-sm")
-      tbody
-        tr
-          td Conclusion
-          td= worker.lastTask.result.conclusion
-        tr
-          td Title
-          td= worker.lastTask.result.title
-        tr
-          td Summary
-          td= worker.lastTask.result.summary
-        tr
-          td Text
-          td= worker.lastTask.result.text
+    +infoCard('Task Result')
+      table(class="table-auto w-full")
+        tbody
+          +tableRow()
+            +tableCell('Conclusion')
+            +tableCell(worker.lastTask.result.conclusion)
+          +tableRow()
+            +tableCell('Title')
+            +tableCell(worker.lastTask.result.title)
+          +tableRow()
+            +tableCell('Summary')
+            +tableCell(worker.lastTask.result.summary)
+          +tableRow()
+            +tableCell('Text')
+            +tableCell(worker.lastTask.result.text)

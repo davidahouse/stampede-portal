@@ -1,16 +1,21 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    thead
-      tr 
-        th Owner
-        th Repository
-    tbody
-      each repo, i in repositories
+  +titleBar([{title: 'Repositories'}])
+  div(class="flex flex-wrap m-4")
+
+    table(class="table-auto w-full")
+      thead
         tr
-          td
-            a(href=`/repositories/repositoryDetails?owner=` + repo.owner + `&repository=` + repo.repository)= repo.owner
-          td
-            a(href=`/repositories/repositoryDetails?owner=` + repo.owner + `&repository=` + repo.repository)= repo.repository
+          +tableHeader('Owner')
+          +tableHeader('Repository')
+      tbody
+        each repo, i in repositories
+          +tableRow('/repositories/repositoryDetails?owner=' + repo.owner + '&repository=' + repo.repository)
+            +tableCell(repo.owner)
+            +tableCell(repo.repository)

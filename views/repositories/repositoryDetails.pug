@@ -1,48 +1,56 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  nav(class="w-100")
-    ol(class="breadcrumb align-items-center")
-      li(class="breadcrumb-item active")
-        a(href="/repositories")
-          =`Repositories`
+  +titleBar([{title: 'Repositories', href: '/repositories'},
+  {title: owner + ' ' + repository}])
+  div(class="flex flex-wrap m-4")
 
-  h2= owner
-  h2= repository
+  div(class="w-full p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Repository Information
+        div(class="p-5")
+          table(class="table-auto w-full")
+            tbody
+              +tableRow()
+                +tableCell('Next Build Number')
+                +tableCell(nextBuildNumber)
 
-  hr
+  div(class="w-full p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Active Builds
+        div(class="p-5")
+          table(class="table-auto w-full")
+              thead
+                +tableHeader('Build')
+                +tableHeader('Build #')
+                +tableHeader('Started At')
+              each build, i in activeBuilds
+                tbody
+                  +tableRow(`/repositories/buildDetails?buildID=` + build.build_id)
+                    +tableCell(build.build_key)
+                    +tableCell(build.build)
+                    +tableCell(build.started_at)
 
-  h3= `Next Build Number: ` + nextBuildNumber
-
-  hr
-
-  h3 Active Builds:
-
-  table(class="table table-striped table-sm")
-    tbody
-      each build, i in activeBuilds
-        tr
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.build_key
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.build
-          td= build.status
-
-  hr
-
-  h3 Recent Builds:
-
-  table(class="table table-striped table-sm")
-    tbody
-      each build, i in recentBuilds
-        tr
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.owner
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.repository
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.build_key
-          td
-            a(href=`/repositories/buildDetails?buildID=` + build.build_id)= build.build
-          td= build.status
+  div(class="w-full p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Recent Builds
+        div(class="p-5")
+          table(class="table-auto w-full")
+              thead
+                +tableHeader('Build')
+                +tableHeader('Build #')
+                +tableHeader('Completed At')
+              each build, i in recentBuilds
+                tbody
+                  +tableRow(`/repositories/buildDetails?buildID=` + build.build_id)
+                    +tableCell(build.build_key)
+                    +tableCell(build.build)
+                    +tableCell(build.completed_at)
