@@ -19,7 +19,7 @@ async function handle(req, res, cache, db, path) {
   });
   const buildRows = await db.fetchBuild(task.build_id);
   const build = buildRows.rows[0];
-  res.render(path + 'monitor/taskDetails', {
+  res.render(path + 'monitor/buildTaskDetails', {
     task: task,
     build: build,
     taskDetails: taskDetails,

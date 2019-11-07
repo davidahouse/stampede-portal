@@ -19,7 +19,8 @@ async function handle(req, res, cache, db, path, redisConfig) {
   taskDetails.worker = {};
   taskDetails.result = {};
   taskDetails.staus = 'queued';
-  console.dir(taskDetails);
+  const buildRows = await db.fetchBuild(task.build_id);
+  const build = buildRows.rows[0];
 
   // Figure out the task queue
   const taskQueue = new Queue('stampede-' + taskDetails.taskQueue, redisConfig);
@@ -28,7 +29,8 @@ async function handle(req, res, cache, db, path, redisConfig) {
 
   res.render(path + 'monitor/requeueTask', {
     task: task,
-    taskDetails: taskDetails
+    taskDetails: taskDetails,
+    build: build
   });
 }
 

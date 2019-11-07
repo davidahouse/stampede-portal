@@ -1,14 +1,21 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped")
-    thead
-      tr
-        th= `Task ID`
-        th= `Count`
-    tbody
-      each task, i in failures
+  +titleBar([{title: 'Trending Failures'}])
+  div(class="flex flex-wrap m-4")
+
+    table(class="table-auto w-full")
+      thead
         tr
-          td= task.task
-          td= task.count
+          +tableHeader('Task ID')
+          +tableHeader('Count')
+      tbody
+        each task, i in failures
+          +tableRow()
+            +tableCell(task.task)
+            +tableCell(task.count)
