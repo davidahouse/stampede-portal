@@ -8,7 +8,8 @@
  */
 async function handle(req, res, cache, db, path) {
   const builds = await db.recentBuilds(8);
-  res.render(path + "history/builds", { builds: builds.rows });
+  console.dir(builds);
+  res.render(path + 'history/builds', { builds: builds.rows });
 }
 
 module.exports.handle = handle;

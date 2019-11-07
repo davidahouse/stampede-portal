@@ -1,17 +1,27 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    tbody
-      each build, i in builds
+  +titleBar([{title: 'Builds'}])
+  div(class="flex flex-wrap m-4")
+
+    table(class="table-auto w-full")
+      thead
         tr
-          td
-            a(href=`/history/buildDetails?buildID=` + build.build_id)= build.owner
-          td
-            a(href=`/history/buildDetails?buildID=` + build.build_id)= build.repository
-          td
-            a(href=`/history/buildDetails?buildID=` + build.build_id)= build.build_key
-          td
-            a(href=`/history/buildDetails?buildID=` + build.build_id)= build.build
-          td= build.status
+          +tableHeader('Owner')
+          +tableHeader('Repository')
+          +tableHeader('Build Key')
+          +tableHeader('Build #')
+          +tableHeader('Finished')
+      tbody
+        each build, i in builds
+          +tableRow(`/history/buildDetails?buildID=` + build.build_id)
+            +tableCell(build.owner)
+            +tableCell(build.repository)
+            +tableCell(build.build_key)
+            +tableCell(build.build)
+            +tableCell(build.completed_at)

@@ -1,10 +1,22 @@
-extends layout
+extends ../layout
+
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    tbody
-      each queue, i in queues
+  +titleBar([{title: 'Queues'}])
+  div(class="flex flex-wrap m-4")
+
+    table(class="table-auto w-full")
+      thead
         tr
-          td= queue.id
-          td= queue.title
+          +tableHeader('Queue ID')
+          +tableHeader('Title')
+      tbody
+         each queue, i in queues
+          +tableRow()
+            +tableCell(queue.id)
+            +tableCell(queue.title)
