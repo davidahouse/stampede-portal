@@ -1,18 +1,26 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    tbody
-      each task, i in tasks
+  +titleBar([{title: 'Tasks'}])
+  div(class="flex flex-wrap m-4")
+    table(class="table-auto w-full")
+      thead
         tr
-          td
-            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.owner
-          td
-            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.repository
-          td
-            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.task
-          td
-            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.conclusion
-          td
-            a(href=`/history/taskDetails?taskID=` + task.task_id)= task.node
+          +tableHeader('Owner')
+          +tableHeader('Repository')
+          +tableHeader('Task')
+          +tableHeader('Conclusion')
+          +tableHeader('Node')
+      tbody
+        each task, i in tasks
+          +tableRow(`/history/taskDetails?taskID=` + task.task_id)
+            +tableCell(task.owner)
+            +tableCell(task.repository)
+            +tableCell(task.task)
+            +tableCell(task.conclusion)
+            +tableCell(task.node)

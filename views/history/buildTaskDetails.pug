@@ -7,8 +7,10 @@ include ../components/infoCard
 
 block content
 
-  +titleBar([{title: 'Tasks', href: '/history/tasks'}, {title: task.task}])
-  div(class="flex flex-wrap m-4")
+    +titleBar([{title: 'Builds', href: '/history/builds'}, 
+    {title: build.owner + '' + build.repository + ' #' + build.build, href: '/history/buildDetails?buildID=' + build.build_id},
+    {title: task.task}])
+    div(class="flex flex-wrap m-4")
 
     +infoCard('Task Information')
         table(class="table-auto w-full")
