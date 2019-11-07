@@ -21,27 +21,9 @@ html
       //- Sidebar
       +sideBar('History')
 
-
-        //- nav(class="col-md-2 d-none d-md-block bg-light sidebar")
-        //-   div(class="sidebar-sticky")
-        //-     ul(class="nav flex-column")
-        //-       li(class="nav-item")
-        //-         a(class="nav-link" href="/repositories")
-        //-           =`Repositories`
-        //-       li(class="nav-item")
-        //-         a(class="nav-link" href="/monitor")
-        //-           =`Monitor`
-        //-       li(class="nav-item")                
-        //-         a(class="nav-link" href="/history")
-        //-           =`History`
-        //-       li(class="nav-item")                
-        //-         a(class="nav-link" href="/admin")
-        //-           =`Admin`
-
       //- Content area
       div(class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5")
-        div(class="bg-blue-800 p-2 shadow text-xl text-white")
-          h3(class="font-bold pl-2") Repositories
-
-        div(class="flex flex-wrap m-4")
           block content
+
+    script
+      include datahref.js

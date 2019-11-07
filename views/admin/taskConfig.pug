@@ -1,29 +1,46 @@
-extends layout
+extends ../layout
+include ../components/titleBar
+include ../components/tableHeader
+include ../components/tableCell
+include ../components/tableRow
 
 block content
 
-  table(class="table table-striped table-sm")
-    tbody
-      tr
-        td Task
-        td= taskDetails.id
-      tr
-        td Title
-        td= taskDetails.title
+  +titleBar([{title: 'Tasks', href: '/admin/tasks'}, {title: taskID}])
+  div(class="flex flex-wrap m-4")
 
-  h5 Config Parameters
+    div(class="w-full md:w-1/2 xl:w-1/3 p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Task Information
+        div(class="p-5")
+          table(class="table-auto w-full")
+            tbody
+              +tableRow()
+                +tableCell(taskDetails.id)
+              +tableRow()
+                +tableCell(taskDetails.title)
 
-  table(class="table table-striped table-sm")
-    tbody
-      each param, i in config
-        tr
-          td= param.key
+    div(class="w-full md:w-1/2 xl:w-1/3 p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Config Parameters
+        div(class="p-5")
+          table(class="table-auto w-full")
+            tbody
+              each param, i in config
+                +tableRow()
+                  +tableCell(param.key)
 
-  h5 Worker Parameters
+    div(class="w-full md:w-1/2 xl:w-1/3 p-3")
+      div(class="bg-white border-transparent rounded-lg shadow-lg")
+        div(class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2")
+          h5(class="font-bold uppercase text-gray-600") Worker Parameters
+        div(class="p-5")
+          table(class="table-auto w-full")
+            tbody
+              each config, i in workerConfig
+                +tableRow()
+                  +tableCell(config.key)
+                  +tableCell(config.value)
 
-  table(class="table table-striped table-sm")
-    tbody
-      each config, i in workerConfig
-        tr
-          td= config.key
-          td= config.value  
