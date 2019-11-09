@@ -4,6 +4,7 @@ include ../components/tableHeader
 include ../components/tableCell
 include ../components/tableRow
 include ../components/infoCard
+include ../components/tableCellButton
 
 block content
 
@@ -24,6 +25,10 @@ block content
               +tableRow()
                 +tableCell('Node')
                 +tableCell(task.node)
+              +tableRow()
+                +tableCellButton('Requeue', '/history/requeueTask?taskID=' + task.task_id)
+                +tableCell('')
+
 
     +infoCard('Task Config')
         table(class="table-auto w-full")
