@@ -23,7 +23,7 @@ const conf = require("rc")("stampede", {
   dbPassword: null,
   dbPort: 54320,
   dbCert: null,
-  notificationQueue: "stampede-portal"
+  notificationQueue: "portal"
 });
 
 clear();
