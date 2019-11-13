@@ -16,7 +16,7 @@ block content
           +tableHeader('Repository')
           +tableHeader('Build Key')
           +tableHeader('Build #')
-          +tableHeader('Started At')
+          +tableHeader('Duration')
       tbody
         each build, i in builds
           +tableRow(`/monitor/buildDetails?buildID=` + build.build_id)
@@ -24,4 +24,4 @@ block content
             +tableCell(build.repository)
             +tableCell(build.build_key)
             +tableCell(build.build)
-            +tableCell(build.started_at)
+            +tableCell(prettyMilliseconds(new Date() - build.started_at))
