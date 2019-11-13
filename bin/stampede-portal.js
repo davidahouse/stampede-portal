@@ -37,6 +37,24 @@ console.log(chalk.red("Web Port: " + conf.webPort));
 console.log(chalk.red("DB Host: " + conf.dbHost));
 console.log(chalk.red("DB Port: " + conf.dbPort));
 
+/**
+ * Handle shutdown gracefully
+ */
+process.on("SIGINT", function() {
+  gracefulShutdown();
+});
+
+/**
+ * gracefulShutdown
+ */
+async function gracefulShutdown() {
+  console.log("Closing queues");
+  await notifications.stop();
+  await db.stop();
+  await cache.stopCache();
+  process.exit(0);
+}
+
 // Initialize our cache
 db.start(conf);
 cache.startCache(conf);
