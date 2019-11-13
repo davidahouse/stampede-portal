@@ -16,6 +16,7 @@ block content
           +tableHeader('Worker Name')
           +tableHeader('Status')
           +tableHeader('Task Queue')
+          +tableHeader('Last Status')
       tbody
         each worker, i in workers
           +tableRow(`/monitor/workerDetails?workerID=` + worker.workerID)
@@ -23,3 +24,4 @@ block content
             +tableCell(worker.workerName)
             +tableCell(worker.status)
             +tableCell(worker.taskQueue)
+            +tableCell(prettyMilliseconds(new Date() - Date.parse(worker.timestamp)))
