@@ -1,3 +1,5 @@
+const prettyMilliseconds = require("pretty-ms");
+
 /**
  * handle workers
  * @param {*} req
@@ -8,8 +10,10 @@
  */
 async function handle(req, res, cache, db, path) {
   const workers = await cache.fetchActiveWorkers();
-  console.dir(workers);
-  res.render(path + "monitor/workers", { workers: workers });
+  res.render(path + "monitor/workers", {
+    workers: workers,
+    prettyMilliseconds: ms => (ms != null ? prettyMilliseconds(ms) : "")
+  });
 }
 
 module.exports.handle = handle;
