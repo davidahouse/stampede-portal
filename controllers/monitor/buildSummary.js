@@ -10,7 +10,7 @@ async function handle(req, res, cache, db, path) {
   const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  const builds = await db.recentBuilds(12);
+  const builds = await db.recentBuilds(12, 50);
   const recentBuilds = builds.rows;
   for (let index = 0; index < recentBuilds.length; index++) {
     console.dir(recentBuilds[index]);
