@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /**
  * handle recentBuilds
@@ -9,22 +9,29 @@
  * @param {*} db
  */
 async function handle(req, res, serverConf, cache, db) {
-  const recentBuilds = await db.recentBuilds(8, req.query.owner, req.query.repository)
-  const builds = []
+  const recentBuilds = await db.recentBuilds(
+    8,
+    50,
+    req.query.owner,
+    req.query.repository
+  );
+  const builds = [];
   if (recentBuilds != null) {
     for (let index = 0; index < recentBuilds.rows.length; index++) {
-      const buildID = recentBuilds.rows[index].build_id
-      const buildDetails = await db.fetchBuild(buildID)
-      const tasks = await db.fetchBuildTasks(buildID)
+      const buildID = recentBuilds.rows[index].build_id;
+      const buildDetails = await db.fetchBuild(buildID);
+      const tasks = await db.fetchBuildTasks(buildID);
       builds.push({
         buildID: buildID,
-        buildDetails: (buildDetails != null && buildDetails.rows.length > 0) ?
-                  buildDetails.rows[0] : {},
-        tasks: tasks.rows,
-      })
+        buildDetails:
+          buildDetails != null && buildDetails.rows.length > 0
+            ? buildDetails.rows[0]
+            : {},
+        tasks: tasks.rows
+      });
     }
   }
-  res.send(builds)
+  res.send(builds);
 }
 
-module.exports.handle = handle
+module.exports.handle = handle;
