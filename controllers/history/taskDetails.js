@@ -15,11 +15,15 @@ async function handle(req, res, cache, db, path) {
   Object.keys(
     taskDetails.details.config != null ? taskDetails.details.config : {}
   ).forEach(function(key) {
-    configValues.push({ key: key, value: taskDetails.details.config[key] });
+    configValues.push({
+      key: key,
+      value: taskDetails.details.config[key].value,
+      source: taskDetails.details.config[key].source
+    });
   });
   const buildRows = await db.fetchBuild(task.build_id);
   const build = buildRows.rows[0];
-  res.render(path + 'history/taskDetails', {
+  res.render(path + "history/taskDetails", {
     task: task,
     build: build,
     taskDetails: taskDetails,
