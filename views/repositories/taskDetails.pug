@@ -34,11 +34,13 @@ block content
         table(class="table-auto w-full")
             thead
               +tableHeader('Config Parameter')
+              +tableHeader('Source')
               +tableHeader('Value')
             tbody
                 each config, i in configValues
                     +tableRow()
                         +tableCell(config.key)
+                        +tableCell(config.source)
                         +tableCell(config.value)
 
 
