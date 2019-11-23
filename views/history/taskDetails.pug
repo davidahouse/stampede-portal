@@ -23,6 +23,28 @@ block content
                 +tableCell('Node')
                 +tableCell(task.node)
 
+    +infoCard('Build Information')
+        table(class="table-auto w-full")
+          tbody
+            +tableRow()
+              +tableCell('Owner')
+              +tableCell(build.owner)
+            +tableRow()
+              +tableCell('Repository')
+              +tableCell(build.repository)
+            +tableRow()
+              +tableCell('Build Key')
+              +tableCell(build.build_key)
+            +tableRow()
+              +tableCell('Build #')
+              +tableCell(build.build)
+            +tableRow()
+              +tableCell('Status')
+              +tableCell(build.status)
+            +tableRow()
+              +tableCell('Started At')
+              +tableCell(build.started_at)
+
     +infoCard('Task Config')
         table(class="table-auto w-full")
             thead
