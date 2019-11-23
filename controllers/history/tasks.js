@@ -37,7 +37,18 @@ async function handle(req, res, cache, db, path) {
     );
   }
 
-  const tasks = await db.recentTasks(timeFilter, taskFilter, repositoryFilter);
+  const conclusionList = ["All", "success", "failure"];
+  let conclusionFilter = "All";
+  if (req.query.conclusion != null) {
+    conclusionFilter = req.query.conclusion;
+  }
+
+  const tasks = await db.recentTasks(
+    timeFilter,
+    taskFilter,
+    repositoryFilter,
+    conclusionFilter
+  );
 
   res.render(path + "history/tasks", {
     tasks: tasks.rows,
@@ -46,7 +57,9 @@ async function handle(req, res, cache, db, path) {
     taskFilter: taskFilter,
     taskList: sortedTasks,
     repositoryFilter: repositoryFilter,
-    repositoryList: repositories
+    repositoryList: repositories,
+    conclusionList: conclusionList,
+    conclusionFilter: conclusionFilter
   });
 }
 
