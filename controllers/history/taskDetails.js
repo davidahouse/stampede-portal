@@ -23,11 +23,24 @@ async function handle(req, res, cache, db, path) {
   });
   const buildRows = await db.fetchBuild(task.build_id);
   const build = buildRows.rows[0];
+  const summary =
+    taskDetails.details.result != null &&
+    taskDetails.details.result.summary != null
+      ? taskDetails.details.result.summary
+      : "";
+  const text =
+    taskDetails.details.result != null &&
+    taskDetails.details.result.text != null
+      ? taskDetails.details.result.text
+      : "";
+
   res.render(path + "history/taskDetails", {
     task: task,
     build: build,
     taskDetails: taskDetails,
-    configValues: configValues
+    configValues: configValues,
+    summary: summary,
+    text: text
   });
 }
 
