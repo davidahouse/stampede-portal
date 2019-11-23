@@ -43,11 +43,25 @@ async function handle(req, res, cache, db, path) {
     conclusionFilter = req.query.conclusion;
   }
 
+  const sortList = [
+    "Date",
+    "Date DESC",
+    "Task",
+    "Owner",
+    "Repository",
+    "Conclusion"
+  ];
+  let sorted = "Date DESC";
+  if (req.query.sorted != null) {
+    sorted = req.query.sorted;
+  }
+
   const tasks = await db.recentTasks(
     timeFilter,
     taskFilter,
     repositoryFilter,
-    conclusionFilter
+    conclusionFilter,
+    sorted
   );
 
   res.render(path + "history/tasks", {
@@ -59,7 +73,9 @@ async function handle(req, res, cache, db, path) {
     repositoryFilter: repositoryFilter,
     repositoryList: repositories,
     conclusionList: conclusionList,
-    conclusionFilter: conclusionFilter
+    conclusionFilter: conclusionFilter,
+    sortList: sortList,
+    sorted: sorted
   });
 }
 
