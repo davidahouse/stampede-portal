@@ -22,6 +22,12 @@ block content
               +tableRow()
                 +tableCell('Node')
                 +tableCell(task.node)
+              +tableRow()
+                +tableCell('Started')
+                +tableCell(task.started_at)
+              +tableRow()
+                +tableCell('Finished')
+                +tableCell(task.finished_at)
 
     +infoCard('Build Information')
         table(class="table-auto w-full")
