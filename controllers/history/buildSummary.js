@@ -43,7 +43,7 @@ async function handle(req, res, cache, db, path) {
       }
     ]
   };
-  res.render(path + "monitor/buildSummary", { data: data });
+  res.render(path + "history/buildSummary", { data: data });
 }
 
 module.exports.handle = handle;
