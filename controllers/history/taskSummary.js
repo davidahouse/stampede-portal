@@ -108,7 +108,7 @@ async function handle(req, res, cache, db, path) {
     });
   }
 
-  res.render(path + "monitor/taskSummary", {
+  res.render(path + "history/taskSummary", {
     graphs: graphs,
     timeFilter: timeFilter,
     timeFilterList: ["Last 8 hours", "Today", "Yesterday"],
