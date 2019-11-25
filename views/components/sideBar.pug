@@ -11,14 +11,14 @@ mixin sideBar(activeMenu)
                 +sideBarSection('Monitor', 'desktop', [
                     {title: 'Active Builds', href: '/monitor/activeBuilds'},
                     {title: 'Active Tasks', href: '/monitor/activeTasks'},
-                    {title: 'Build Summary', href: '/monitor/buildSummary'},
-                    {title: 'Task Summary', href: '/monitor/taskSummary'},
                     {title: 'Workers', href: '/monitor/workers'},
                     {title: 'Queues', href: '/monitor/queues', class: 'pb-3'}
                     ])
                 +sideBarSection('History', 'history', [
                     {title: 'Builds', href: '/history/builds'},
-                    {title: 'Tasks', href: '/history/tasks', class: 'pb-3'},
+                    {title: 'Build Summary', href: '/history/buildSummary'},
+                    {title: 'Tasks', href: '/history/tasks'},
+                    {title: 'Task Summary', href: '/history/taskSummary', class: 'pb-3'}
                     ])
                 +sideBarSection('Admin', 'user-cog', [
                     {title: 'Tasks', href: '/admin/tasks'},
