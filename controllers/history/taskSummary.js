@@ -7,9 +7,6 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
   let timeFilter = "Last 8 hours";
   if (req.query.time != null) {
     timeFilter = req.query.time;
@@ -38,7 +35,7 @@ async function handle(req, res, cache, db, path) {
   for (let index = 0; index < sortedTasks.length; index++) {
     const tasks = await db.recentTasks(
       timeFilter,
-      sortedTasks[0],
+      sortedTasks[index],
       repositoryFilter,
       "All",
       "Date DESC"
