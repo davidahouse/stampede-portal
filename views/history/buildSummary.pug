@@ -7,7 +7,7 @@ block content
   div(class="flex flex-wrap m-4")
 
     div(class="chart-container w-full")
-      canvas(id="buildSummary")
+      canvas(id="buildSummary" height="100")
         script.
           var chartData = JSON.parse('!{JSON.stringify(data)}');
           var ctx = document.getElementById('buildSummary').getContext('2d');

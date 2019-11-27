@@ -27,7 +27,7 @@ block content
 
       +infoCard(graph.task)
         div(class="chart-container w-full")
-          canvas(id=``+graph.task)
+          canvas(id=``+graph.task height="100")
             script.
               var chartData = JSON.parse('!{JSON.stringify(graph.data)}');
               var ctx = document.getElementById('!{graph.task}').getContext('2d');
