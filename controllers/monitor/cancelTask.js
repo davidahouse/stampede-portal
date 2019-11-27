@@ -23,7 +23,10 @@ async function handle(req, res, cache, db, path, redisConfig) {
   };
 
   const taskQueue = new Queue("stampede-response", redisConfig);
-  taskQueue.add(taskDetails, { removeOnComplete: true, removeOnFail: true });
+  taskQueue.add(
+    { response: "taskUpdate", payload: taskDetails },
+    { removeOnComplete: true, removeOnFail: true }
+  );
   taskQueue.close();
   res.render(path + "monitor/cancelTask", {
     task: task,
