@@ -10,7 +10,7 @@ block content
   +titleBar([{title: 'Task Summary'}])
 
   div(class="flex flex-wrap m-4")
-      form(class="w-full m-4" method="GET" action="/monitor/taskSummary")
+      form(class="w-full m-4" method="GET" action="/history/taskSummary")
         div(class="flex -mx-3 mb-6")
           div(class="w-1/2 px-3 mb-6 md:mb-0")
             +formSelect("Time", "time", timeFilterList, timeFilter)
