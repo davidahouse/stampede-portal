@@ -9,8 +9,14 @@
  * @param {*} db
  */
 async function handle(req, res, serverConf, cache, db) {
-  const overrides = await cache.fetchSystemOverrides();
-  res.send(overrides != null ? overrides : { overrides: {} });
+  const systemOverrides = await cache.fetchSystemOverrides();
+  let overrides = {};
+  if (systemOverrides != null) {
+    Object.keys(systemOverrides.overrides).forEach(function(key) {
+      overrides[key] = systemOverrides.overrides[key].toString();
+    });
+  }
+  res.send({ overrides: overrides });
 }
 
 module.exports.handle = handle;
