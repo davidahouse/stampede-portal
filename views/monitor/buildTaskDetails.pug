@@ -27,10 +27,7 @@ block content
                 +tableCell(task.node)
               +tableRow()
                 +tableCellButton('Requeue', '/monitor/requeueTask?taskID=' + task.task_id)
-                if task.conclusion == null
-                  +tableCellButton('Cancel', '/monitor/cancelTask?taskID=' + task.task_id)
-                else
-                  +tableCell('')
+                +tableCellButton('Cancel', '/monitor/cancelTask?taskID=' + task.task_id)
 
     +infoCard('Task Config')
         table(class="table-auto w-full")
