@@ -3,6 +3,7 @@ include ../components/titleBar
 include ../components/tableHeader
 include ../components/tableCell
 include ../components/tableRow
+include ../components/tableCellButton
 
 block content
 
@@ -20,6 +21,31 @@ block content
               +tableRow()
                 +tableCell('Next Build Number')
                 +tableCell(nextBuildNumber)
+                +tableCellButton("Change", "/repositories")
+              +tableRow()
+                +tableCell('Config Source')
+                +tableCell('Repository .stampede.yaml')
+                +tableCellButton("Change", "/repositories")
+              +tableRow()
+                +tableCell('Org Config Defaults')
+                +tableCell('')
+                +tableCellButton("Edit", "/repositories")
+              +tableRow()
+                +tableCell('Org Config Overrides')
+                +tableCell('')
+                +tableCellButton("Edit", "/repositories")
+              +tableRow()
+                +tableCell('Repository Config Defaults')
+                +tableCell('')
+                +tableCellButton("Edit", "/repositories")
+              +tableRow()
+                +tableCell('Repository Config Overrides')
+                +tableCell('')
+                +tableCellButton("Edit", "/repositories")
+              +tableRow()
+                +tableCell('Test Task')
+                +tableCell('')
+                +tableCellButton("Start", "/repositories")
 
   div(class="w-full p-3")
       div(class="bg-white border-transparent rounded-lg shadow-lg")
