@@ -45,7 +45,7 @@ block content
               +tableRow()
                 +tableCell('Test Task')
                 +tableCell('')
-                +tableCellButton("Start", "/repositories")
+                +tableCellButton("Start", `/repositories/executeTaskSelection?owner=` + owner + `&repository=` + repository)
 
   div(class="w-full p-3")
       div(class="bg-white border-transparent rounded-lg shadow-lg")
