@@ -17,12 +17,17 @@ async function handle(req, res, cache, db, path) {
   const activeBuilds = await db.activeBuilds(owner, repository);
   const recentBuilds = await db.recentBuilds(1000, 50, owner, repository);
 
+  const repoConfig = await cache.fetchRepoConfig(owner, repository);
+  const configSource =
+    repoConfig != null ? "Cache" : "Repository .stampede.yaml";
+
   res.render(path + "repositories/repositoryDetails", {
     owner: owner,
     repository: repository,
     nextBuildNumber: parseInt(buildNumber) + 1,
     activeBuilds: activeBuilds.rows,
-    recentBuilds: recentBuilds.rows
+    recentBuilds: recentBuilds.rows,
+    configSource: configSource
   });
 }
 
