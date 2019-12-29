@@ -1,5 +1,7 @@
+const yaml = require("js-yaml");
+
 /**
- * handle tasks
+ * handle uploadOverrides
  * @param {*} req
  * @param {*} res
  * @param {*} cache
@@ -7,6 +9,12 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
+  const uploadData = req.files.uploadFile;
+  const uploadOverrides = yaml.safeLoad(uploadData.data);
+  if (uploadOverrides != null) {
+    await cache.storeSystemOverrides(uploadOverrides);
+  }
+
   const overrides = await cache.fetchSystemOverrides();
   const configOverrides = [];
   if (overrides != null && overrides.overrides != null) {
