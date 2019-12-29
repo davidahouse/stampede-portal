@@ -1,5 +1,7 @@
+const yaml = require("js-yaml");
+
 /**
- * handle tasks
+ * handle uploadDefaults
  * @param {*} req
  * @param {*} res
  * @param {*} cache
@@ -7,6 +9,12 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
+  const uploadDefaultsData = req.files.uploadFile;
+  const uploadDefaults = yaml.safeLoad(uploadDefaultsData.data);
+  if (uploadDefaults != null) {
+    await cache.storeSystemDefaults(uploadDefaults);
+  }
+
   const defaults = await cache.fetchSystemDefaults();
   const configDefaults = [];
   if (defaults != null && defaults.defaults != null) {
