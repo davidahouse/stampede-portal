@@ -1,3 +1,5 @@
+const yaml = require("js-yaml");
+
 /**
  * handle tasks
  * @param {*} req
@@ -7,6 +9,12 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
+  const uploadData = req.files.uploadFile;
+  const uploadQueues = yaml.safeLoad(uploadData.data);
+  if (uploadQueues != null) {
+    await cache.storeSystemQueues(uploadQueues);
+  }
+
   const queueList = await cache.fetchSystemQueues();
   res.render(path + "admin/queues", {
     queues: queueList != null ? queueList : []
