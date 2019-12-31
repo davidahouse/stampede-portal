@@ -45,7 +45,7 @@
     "pug": "^2.0.3",
     "rc": "^1.2.8",
     "redis": "^2.8.0",
-    "stampede-cache": "^0.9.0",
+    "stampede-cache": "^0.12.4",
     "tailwindcss": "^1.1.3",
     "uuid": "^3.3.3",
     "ws": "^6.0.0"
