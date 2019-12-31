@@ -20,6 +20,9 @@ async function handle(req, res, cache, db, path) {
   const repoConfig = await cache.fetchRepoConfig(owner, repository);
   const configSource =
     repoConfig != null ? "Cache" : "Repository .stampede.yaml";
+  const configSourceDestination =
+    repoConfig != null ? "viewCachedConfig" : "toggleConfigSource";
+  const configSourceAction = repoConfig != null ? "View" : "Upload";
 
   res.render(path + "repositories/repositoryDetails", {
     owner: owner,
@@ -27,7 +30,9 @@ async function handle(req, res, cache, db, path) {
     nextBuildNumber: parseInt(buildNumber) + 1,
     activeBuilds: activeBuilds.rows,
     recentBuilds: recentBuilds.rows,
-    configSource: configSource
+    configSource: configSource,
+    configSourceDestination: configSourceDestination,
+    configSourceAction: configSourceAction
   });
 }
 

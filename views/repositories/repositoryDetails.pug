@@ -25,7 +25,7 @@ block content
               +tableRow()
                 +tableCell('Config Source')
                 +tableCell(configSource)
-                +tableCellButton("Change", `/repositories/toggleConfigSource?owner=` + owner + `&repository=` + repository + `&configSource=` + configSource)
+                +tableCellButton(configSourceAction, `/repositories/` + configSourceDestination + `?owner=` + owner + `&repository=` + repository + `&configSource=` + configSource)
               +tableRow()
                 +tableCell('Org Config Defaults')
                 +tableCell('')
