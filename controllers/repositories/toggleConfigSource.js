@@ -7,10 +7,17 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const owner = req.query.owner;
-  const repository = req.query.repository;
+  let owner = req.query.owner;
+  let repository = req.query.repository;
+  let configSource = req.query.configSource;
 
-  if (req.query.configSource === "Repository .stampede.yaml") {
+  if (owner == null) {
+    owner = req.body.owner;
+    repository = req.body.repository;
+    configSource = req.body.configSource;
+  }
+
+  if (configSource === "Repository .stampede.yaml") {
     res.render(path + "repositories/toggleConfigSource", {
       owner: owner,
       repository: repository
