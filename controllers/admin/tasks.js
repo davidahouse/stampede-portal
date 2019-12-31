@@ -17,7 +17,6 @@ async function handle(req, res, cache, db, path) {
       title: taskDetails.title
     });
   }
-  console.dir(tasks);
   res.render(path + "admin/tasks", { tasks: tasks });
 }
 
