@@ -1,4 +1,4 @@
-const Queue = require('bull');
+const Queue = require("bull");
 
 /**
  * handle queues
@@ -17,18 +17,18 @@ async function handle(req, res, cache, db, path, conf) {
       password: conf.redisPassword
     }
   };
-  const queueList = await cache.fetchSystemQueues();
+  const queueList = await cache.systemQueues.fetchSystemQueues();
   const queues = [];
 
   for (let index = 0; index < queueList.length; index++) {
-    const q = new Queue('stampede-' + queueList[index].id, redisConfig);
+    const q = new Queue("stampede-" + queueList[index].id, redisConfig);
     const stats = await q.getJobCounts();
     queues.push({
       queue: queueList[index].id,
       stats: stats
     });
   }
-  res.render(path + 'monitor/queues', { queues: queues });
+  res.render(path + "monitor/queues", { queues: queues });
 }
 
 module.exports.handle = handle;
