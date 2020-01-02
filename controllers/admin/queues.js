@@ -7,7 +7,7 @@
  * @param {*} path
  */
 async function handle(req, res, cache, db, path) {
-  const queueList = await cache.fetchSystemQueues();
+  const queueList = await cache.systemQueues.fetchSystemQueues();
   res.render(path + "admin/queues", {
     queues: queueList != null ? queueList : []
   });

@@ -9,7 +9,7 @@
  * @param {*} db
  */
 async function handle(req, res, serverConf, cache, db) {
-  const queueList = await cache.fetchSystemQueues();
+  const queueList = await cache.systemQueues.fetchSystemQueues();
   res.send(queueList);
 }
 
