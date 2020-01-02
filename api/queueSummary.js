@@ -1,5 +1,5 @@
-'use strict';
-const Queue = require('bull');
+"use strict";
+const Queue = require("bull");
 
 /**
  * handle queueSummary
@@ -17,11 +17,11 @@ async function handle(req, res, serverConf, cache, db) {
       password: serverConf.redisPassword
     }
   };
-  const queueList = await cache.fetchSystemQueues();
+  const queueList = await cache.systemQueues.fetchSystemQueues();
   const queues = [];
 
   for (let index = 0; index < queueList.length; index++) {
-    const q = new Queue('stampede-' + queueList[index].id, redisConfig);
+    const q = new Queue("stampede-" + queueList[index].id, redisConfig);
     const stats = await q.getJobCounts();
     queues.push({
       queue: queueList[index].id,
