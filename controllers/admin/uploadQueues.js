@@ -12,10 +12,10 @@ async function handle(req, res, cache, db, path) {
   const uploadData = req.files.uploadFile;
   const uploadQueues = yaml.safeLoad(uploadData.data);
   if (uploadQueues != null) {
-    await cache.storeSystemQueues(uploadQueues);
+    await cache.systemQueues.storeSystemQueues(uploadQueues);
   }
 
-  const queueList = await cache.fetchSystemQueues();
+  const queueList = await cache.systemQueues.fetchSystemQueues();
   res.render(path + "admin/queues", {
     queues: queueList != null ? queueList : []
   });
