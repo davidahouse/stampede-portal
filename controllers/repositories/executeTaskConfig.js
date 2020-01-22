@@ -1,3 +1,5 @@
+const yaml = require("js-yaml");
+
 /**
  * handle executeTaskSelection
  * @param {*} req
@@ -12,31 +14,93 @@ async function handle(req, res, cache, db, path) {
 
   const taskDetails = await cache.fetchTaskConfig(req.body.task);
   const scm = [];
-  scm.push({ key: "clone url" });
-  scm.push({ key: "ssh url" });
-  if (req.body.buildType === "Pull Request") {
-    scm.push({ key: "pr number" });
-    scm.push({ key: "pr title" });
-    scm.push({ key: "head ref" });
-    scm.push({ key: "head sha" });
-    scm.push({ key: "base ref" });
-    scm.push({ key: "base sha" });
-  } else if (req.body.buildType === "Branch") {
-    scm.push({ key: "branch name" });
-    scm.push({ key: "branch sha" });
-  } else if (req.body.buildType === "Release") {
-    scm.push({ key: "release name" });
-    scm.push({ key: "release tag" });
+  const config = [];
+  let taskQueue = taskDetails.taskQueue;
+
+  let providedScm = {};
+
+  // If we were passed a file, use that instead of prompting the user
+  if (req.files != null && req.files.uploadFile != null) {
+    const uploadData = req.files.uploadFile;
+    const uploadDetails = yaml.safeLoad(uploadData.data);
+    const providedConfig =
+      uploadDetails.config != null ? uploadDetails.config : {};
+    Object.keys(providedConfig).forEach(function(key) {
+      config.push({
+        key: key,
+        value: providedConfig[key] != null ? providedConfig[key] : ""
+      });
+    });
+
+    providedScm = uploadDetails.scm != null ? uploadDetails.scm : {};
+    if (uploadDetails.taskQueue != null) {
+      taskQueue = uploadDetails.taskQueue;
+    }
+  } else {
+    for (let index = 0; index < taskDetails.config.length; index++) {
+      config.push({ key: taskDetails.config[index].key, value: "" });
+    }
   }
 
-  const taskQueue = taskDetails.taskQueue;
+  scm.push({
+    key: "clone url",
+    value: providedScm.cloneURL != null ? providedScm.cloneURL : ""
+  });
+  scm.push({
+    key: "ssh url",
+    value: providedScm.sshURL != null ? providedScm.sshURL : ""
+  });
+  if (req.body.buildType === "Pull Request") {
+    scm.push({
+      key: "pr number",
+      value: providedScm.prNumber != null ? providedScm.prNumber : ""
+    });
+    scm.push({
+      key: "pr title",
+      value: providedScm.prTitle != null ? providedScm.prTitle : ""
+    });
+    scm.push({
+      key: "head ref",
+      value: providedScm.headRef != null ? providedScm.headRef : ""
+    });
+    scm.push({
+      key: "head sha",
+      value: providedScm.headSHA != null ? providedScm.headSHA : ""
+    });
+    scm.push({
+      key: "base ref",
+      value: providedScm.baseRef != null ? providedScm.baseRef : ""
+    });
+    scm.push({
+      key: "base sha",
+      value: providedScm.baseSHA != null ? providedScm.baseSHA : ""
+    });
+  } else if (req.body.buildType === "Branch") {
+    scm.push({
+      key: "branch name",
+      value: providedScm.branchName != null ? providedScm.branchName : ""
+    });
+    scm.push({
+      key: "branch sha",
+      value: providedScm.branchSHA != null ? providedScm.branchSHA : ""
+    });
+  } else if (req.body.buildType === "Release") {
+    scm.push({
+      key: "release name",
+      value: providedScm.releaseName != null ? providedScm.releaseName : ""
+    });
+    scm.push({
+      key: "release tag",
+      value: providedScm.releaseTag != null ? providedScm.releaseTag : ""
+    });
+  }
 
   res.render(path + "repositories/executeTaskConfig", {
     owner: owner,
     repository: repository,
     task: req.body.task,
     buildType: req.body.buildType,
-    config: taskDetails.config != null ? taskDetails.config : [],
+    config: config,
     scm: scm,
     taskQueue: taskQueue
   });
