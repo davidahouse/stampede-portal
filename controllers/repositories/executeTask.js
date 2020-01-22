@@ -59,7 +59,8 @@ async function handle(req, res, cache, db, path, redisConfig, conf) {
     buildType: req.body.buildType,
     task: taskDetails,
     taskConfig: taskConfig,
-    scmConfig: scmConfig
+    scmConfig: scmConfig,
+    taskQueue: req.body.taskQueue
   };
 
   responseQueue.add(
