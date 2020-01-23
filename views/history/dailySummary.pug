@@ -1,0 +1,12 @@
+extends layout
+include ../components/titleBar
+include ../components/formSelect
+include ../components/infoCard
+include ../components/tableRow
+include ../components/tableCell
+
+block content
+
+  +titleBar([{title: 'Daily Summary'}])
+
+  div(class="flex flex-wrap m-4")
