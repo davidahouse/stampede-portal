@@ -1,5 +1,7 @@
 extends layout
 include ../components/titleBar
+include ../components/tableRow
+include ../components/tableCell
 
 block content
 
@@ -30,3 +32,24 @@ block content
               }
           }
           });
+
+    table(class="table-auto w-full mt-4")
+      tbody
+        +tableRow()
+          +tableCell('# of Executions')
+          +tableCell(summary.total)
+        +tableRow()
+          +tableCell('# Success')
+          +tableCell(summary.success)
+        +tableRow()
+          +tableCell('# Failure')
+          +tableCell(summary.failure)
+        +tableRow()
+          +tableCell('Avg Duration (s)')
+          +tableCell(summary.avgDuration)
+        +tableRow()
+          +tableCell('Min Duration (s)')
+          +tableCell(summary.minDuration)
+        +tableRow()
+          +tableCell('Max Duration (s)')
+          +tableCell(summary.maxDuration)
