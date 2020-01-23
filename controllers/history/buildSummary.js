@@ -9,22 +9,38 @@
 async function handle(req, res, cache, db, path) {
   const success = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const failure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const summary = {
+    total: 0,
+    success: 0,
+    failure: 0,
+    totalDuration: 0.0,
+    avgDuration: 0.0,
+    minDuration: 99999.99,
+    maxDuration: 0.0
+  };
 
   const builds = await db.recentBuilds(12, 50);
   const recentBuilds = builds.rows;
   for (let index = 0; index < recentBuilds.length; index++) {
-    console.dir(recentBuilds[index]);
-    console.log(recentBuilds[index].completed_at);
     const ageInMs = Date.now() - recentBuilds[index].completed_at;
-    console.log(ageInMs);
     const ageInHours = Math.round(ageInMs / 1000 / 60 / 60);
-    console.log(ageInHours);
     if (recentBuilds[index].status === "completed") {
       success[success.length - 1 - ageInHours] =
         success[success.length - 1 - ageInHours] + 1;
+      summary.success = summary.success + 1;
     } else {
       failure[failure.length - 1 - ageInHours] =
         failure[failure.length - 1 - ageInHours] + 1;
+      summary.failure = summary.failure + 1;
+    }
+    summary.total = summary.total + 1;
+    summary.totalDuration = summary.totalDuration + ageInMs / 1000.0;
+    summary.avgDuration = summary.totalDuration / summary.total;
+    if (ageInMs > summary.maxDuration) {
+      summary.maxDuration = ageInMs / 1000.0;
+    }
+    if (ageInMs / 1000.0 < summary.minDuration) {
+      summary.minDuration = ageInMs / 1000.0;
     }
   }
 
@@ -43,7 +59,7 @@ async function handle(req, res, cache, db, path) {
       }
     ]
   };
-  res.render(path + "history/buildSummary", { data: data });
+  res.render(path + "history/buildSummary", { data: data, summary: summary });
 }
 
 module.exports.handle = handle;
