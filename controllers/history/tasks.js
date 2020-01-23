@@ -56,11 +56,24 @@ async function handle(req, res, cache, db, path) {
     sorted = req.query.sorted;
   }
 
+  let nodeFilter = "All";
+  if (req.query.node != null) {
+    nodeFilter = req.query.node;
+  }
+
+  const nodesRows = await db.fetchNodes();
+  const nodeList = [];
+  nodeList.push("All");
+  for (let index = 0; index < nodesRows.rows.length; index++) {
+    nodeList.push(nodesRows.rows[index].node);
+  }
+
   const tasks = await db.recentTasks(
     timeFilter,
     taskFilter,
     repositoryFilter,
     conclusionFilter,
+    nodeFilter,
     sorted
   );
 
@@ -74,6 +87,8 @@ async function handle(req, res, cache, db, path) {
     repositoryList: repositories,
     conclusionList: conclusionList,
     conclusionFilter: conclusionFilter,
+    nodeList: nodeList,
+    nodeFilter: nodeFilter,
     sortList: sortList,
     sorted: sorted
   });
